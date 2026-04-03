@@ -16,21 +16,21 @@ MCC225/
 ├── .dockerignore
 └── Semana1/
     ├── Cuaderno1-MCC225.ipynb
-    └── Enlaces.md
+    └── Actividad1-MCC225.md
 ```
 
 #### 2. Qué hace este Dockerfile
 
 El `Dockerfile` de este proyecto:
 
-- usa `python:3.11-slim`
-- copia `requirements-base.txt` y `requirements-opcional.txt`
-- instala primero la base y luego, si corresponde, los paquetes opcionales
-- instala **PyTorch** según el argumento `TORCH_FLAVOR`
-- permite elegir entre build **CPU** o build **CUDA** (`cpu`, `cu118`, `cu121`, `cu124`)
-- descarga recursos de `nltk`
-- descarga el modelo `es_core_news_sm` de `spaCy`
-- expone `JupyterLab` en el puerto `8899`
+- Usa `python:3.11-slim`
+- Copia `requirements-base.txt` y `requirements-opcional.txt`
+- Instala primero la base y luego, si corresponde, los paquetes opcionales
+- Instala **PyTorch** según el argumento `TORCH_FLAVOR`
+- Permite elegir entre build **CPU** o build **CUDA** (`cpu`, `cu118`, `cu121`, `cu124`)
+- Sescarga recursos de `nltk`
+- Descarga el modelo `es_core_news_sm` de `spaCy`
+- Expone `JupyterLab` en el puerto `8899`
 
 #### 3. Requisitos cubiertos por el entorno
 
@@ -310,14 +310,14 @@ Abre `verificacion_entorno.ipynb` en JupyterLab y ejecuta todas las celdas.
 
 La validación debería comprobar, como mínimo:
 
-- versión de Python
-- imports principales
-- disponibilidad de `torch`
-- detección de `cuda` cuando corresponda
-- carga de tokenizer de Hugging Face
-- carga de un dataset pequeño
-- funcionamiento básico de spaCy y NLTK
-- imports de `sentence_transformers`, `peft`, `diffusers`, `open_clip_torch`, `faiss`, `gradio` y `streamlit`
+- Versión de Python
+- Imports principales
+- Disponibilidad de `torch`
+- Detección de `cuda` cuando corresponda
+- Carga de tokenizer de Hugging Face
+- Carga de un dataset pequeño
+- Funcionamiento básico de spaCy y NLTK
+- Imports de `sentence_transformers`, `peft`, `diffusers`, `open_clip_torch`, `faiss`, `gradio` y `streamlit`.
 
 #### 13. Verificación rápida dentro del contenedor
 
