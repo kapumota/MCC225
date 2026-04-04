@@ -1,8 +1,8 @@
-### Instrucciones Docker para MCC225
+### Docker para MCC225
 
 Guía práctica para construir y ejecutar el entorno reproducible del curso con Docker usando la imagen **`mcc225`**.
 
-> En este proyecto la carpeta del curso puede llamarse como prefieras, pero la **imagen Docker** se construirá con el nombre **`mcc225`**.
+> En este proyecto la carpeta del curso puede tener cualquier nombre, pero la **imagen Docker** se construirá con el nombre **`mcc225`**.
 
 #### 1. Estructura recomendada
 
@@ -26,50 +26,53 @@ El `Dockerfile` de este proyecto:
 - Usa `python:3.11-slim`
 - Copia `requirements-base.txt` y `requirements-opcional.txt`
 - Instala primero la base y luego, si corresponde, los paquetes opcionales
-- Instala **PyTorch** según el argumento `TORCH_FLAVOR`
-- Permite elegir entre build **CPU** o build **CUDA** (`cpu`, `cu118`, `cu121`, `cu124`)
-- Sescarga recursos de `nltk`
+- Instala `PyTorch`, `torchvision` y `torchaudio` desde el índice oficial de PyTorch según el argumento `TORCH_FLAVOR`
+- Permite construir imagen para `cpu`, `cu118`, `cu121` o `cu124`
+- Descarga recursos de `nltk`
 - Descarga el modelo `es_core_news_sm` de `spaCy`
+- Deja configurados `HF_HUB_ETAG_TIMEOUT=60` y `HF_HUB_DOWNLOAD_TIMEOUT=120`
 - Expone `JupyterLab` en el puerto `8899`
 
-#### 3. Requisitos cubiertos por el entorno
+#### 3. Importante: CPU o GPU
 
-Este entorno está pensado para cubrir los paquetes principales del curso, incluyendo:
+Este entorno permite dos estrategias:
 
-- `torch`, `torchvision`
-- `timm`
-- `scikit-learn`
-- `pandas`
-- `matplotlib`
-- `transformers`
-- `datasets`
-- `peft`
-- `sentence-transformers`
-- `open_clip_torch`
-- `diffusers`
-- `faiss-cpu`
-- `gradio`
-- `streamlit`
+##### 3.1 Build CPU
 
-#### 4. Cómo funciona CPU vs GPU
+Si quieres una imagen CPU:
 
-La elección de CPU o GPU tiene dos partes:
-
-1. **Durante el build** eliges qué variante de PyTorch quieres instalar con `TORCH_FLAVOR`.
-2. **Durante la ejecución** tu código Python decide si usa CUDA o CPU con:
-
-```python
-DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+```bash
+docker build --no-cache \
+  --build-arg TORCH_FLAVOR=cpu \
+  --build-arg INSTALL_OPCIONAL=true \
+  -t mcc225 .
 ```
 
-Eso permite trabajar así:
+##### 3.2 Build GPU
 
-- **PC sin GPU**: construyes con `TORCH_FLAVOR=cpu` o incluso con una build CUDA que luego caiga a CPU.
-- **PC con GPU NVIDIA**: construyes con `TORCH_FLAVOR=cu121` o `cu124` y ejecutas el contenedor con `--gpus all`.
+Si quieres una imagen con soporte CUDA, elige una variante soportada por PyTorch 2.4.1.
 
-#### 5. Construir la imagen con bash
+###### CUDA 12.1
 
-##### 5.1 Entrar a la carpeta del proyecto
+```bash
+docker build --no-cache \
+  --build-arg TORCH_FLAVOR=cu121 \
+  --build-arg INSTALL_OPCIONAL=true \
+  -t mcc225 .
+```
+
+##### CUDA 12.4
+
+```bash
+docker build --no-cache \
+  --build-arg TORCH_FLAVOR=cu124 \
+  --build-arg INSTALL_OPCIONAL=true \
+  -t mcc225 .
+```
+
+#### 4. Construir la imagen paso a paso
+
+##### 4.1 Entrar a la carpeta del proyecto
 
 **Linux/macOS/Git Bash**
 
@@ -86,7 +89,7 @@ requirements-base.txt
 requirements-opcional.txt
 ```
 
-##### 5.2 Construir primero solo la base en CPU
+##### 4.2 Construir primero solo la base
 
 Conviene validar primero el entorno principal, sin paquetes opcionales:
 
@@ -97,7 +100,7 @@ docker build --no-cache \
   -t mcc225 .
 ```
 
-##### 5.3 Construir la imagen completa en CPU
+##### 4.3 Construir la imagen completa
 
 Si el paso anterior termina bien, construye base + opcional:
 
@@ -108,35 +111,25 @@ docker build --no-cache \
   -t mcc225 .
 ```
 
-##### 5.4 Construir la imagen completa para GPU
+Si quieres la variante GPU, cambia `TORCH_FLAVOR=cpu` por `cu121` o `cu124`.
 
-Ejemplo con CUDA 12.1:
-
-```bash
-docker build --no-cache \
-  --build-arg TORCH_FLAVOR=cu121 \
-  --build-arg INSTALL_OPCIONAL=true \
-  -t mcc225 .
-```
-
-Ejemplo con CUDA 12.4:
-
-```bash
-docker build --no-cache \
-  --build-arg TORCH_FLAVOR=cu124 \
-  --build-arg INSTALL_OPCIONAL=true \
-  -t mcc225 .
-```
-
-##### 5.5 Verificar que la imagen exista
+##### 4.4 Verificar que la imagen exista
 
 ```bash
 docker images | grep mcc225
 ```
 
-#### 6. Ejecutar el contenedor desde bash
+En PowerShell puedes usar:
 
-##### 6.1 Linux/macOS/Git Bash en CPU
+```powershell
+docker images mcc225
+```
+
+#### 5. Ejecutar el contenedor desde terminal
+
+##### 5.1 Linux/macOS/Git Bash
+
+##### CPU
 
 ```bash
 docker run -it --rm \
@@ -146,7 +139,7 @@ docker run -it --rm \
   mcc225
 ```
 
-##### 6.2 Linux/macOS/Git Bash en GPU
+##### GPU
 
 ```bash
 docker run -it --rm \
@@ -157,7 +150,9 @@ docker run -it --rm \
   mcc225
 ```
 
-##### 6.3 Windows PowerShell en CPU
+##### 5.2 Windows PowerShell
+
+###### CPU
 
 ```powershell
 docker run -it --rm `
@@ -167,7 +162,7 @@ docker run -it --rm `
   mcc225
 ```
 
-##### 6.4 Windows PowerShell en GPU
+##### GPU
 
 ```powershell
 docker run -it --rm `
@@ -178,19 +173,21 @@ docker run -it --rm `
   mcc225
 ```
 
-##### 6.5 Windows CMD en CPU
+#### 5.3 Windows CMD
+
+##### CPU
 
 ```bat
 docker run -it --rm --name mcc225_container -p 8899:8899 -v %cd%:/workspace mcc225
 ```
 
-##### 6.6 Windows CMD en GPU
+##### GPU
 
 ```bat
 docker run -it --rm --gpus all --name mcc225_container -p 8899:8899 -v %cd%:/workspace mcc225
 ```
 
-#### 7. Abrir JupyterLab
+#### 6. Abrir JupyterLab
 
 Al iniciar el contenedor, abre en el navegador:
 
@@ -200,13 +197,23 @@ http://localhost:8899/lab
 
 Si Jupyter muestra token, cópialo desde los logs del contenedor.
 
-#### 8. Paso a paso con Docker Desktop
+#### 7. Paso a paso con Docker Desktop
 
-##### 8.1 Construir la imagen
+##### 7.1 Antes de construir
 
-Abre Docker Desktop y usa la terminal integrada, o una terminal normal con Docker Desktop iniciado.
+Abre **Docker Desktop** y asegúrate de que:
 
-Primero valida la base en CPU:
+- Docker Desktop esté iniciado
+- el engine esté funcionando
+- estés usando **Linux containers**
+
+Si el comando `docker build` falla con un error de conexión al engine, normalmente significa que Docker Desktop no está iniciado o no está en modo Linux containers.
+
+##### 7.2 Construir la imagen
+
+Puedes usar la terminal integrada de Docker Desktop o una terminal normal con Docker Desktop ya iniciado.
+
+Primero prueba la build base:
 
 ```bash
 docker build --no-cache \
@@ -215,9 +222,7 @@ docker build --no-cache \
   -t mcc225 .
 ```
 
-Si termina bien, construye la imagen completa. Puedes elegir una de estas dos rutas:
-
-**Ruta A. Imagen CPU**
+Si termina bien, construye la imagen completa:
 
 ```bash
 docker build --no-cache \
@@ -226,38 +231,23 @@ docker build --no-cache \
   -t mcc225 .
 ```
 
-**Ruta B. Imagen GPU (CUDA 12.1)**
+Si quieres GPU, cambia `TORCH_FLAVOR=cpu` por `cu121` o `cu124`.
 
-```bash
-docker build --no-cache \
-  --build-arg TORCH_FLAVOR=cu121 \
-  --build-arg INSTALL_OPCIONAL=true \
-  -t mcc225 .
-```
-
-##### 8.2 Ejecutar la imagen desde la interfaz
+##### 7.3 Ejecutar la imagen desde la interfaz
 
 En **Images**, busca `mcc225` y pulsa **Run**.
 
 Completa los campos así:
 
 ```text
-Container name: mcc225-entorno
+Container name: mcc225_container
 Host port: 8899
-Container port: 8899
-Host path: C:\Users\TU_USUARIO\Documents\MCC225
+Host path: C:\Users\TU_USUARIO\ruta\MCC225
 Container path: /workspace
 Environment variables: dejar vacío
 ```
 
-Si tu PC tiene GPU NVIDIA y Docker Desktop ya está configurado para usar GPU, activa la opción de GPU si aparece en la interfaz o ejecuta el contenedor desde terminal con `--gpus all`.
-
-Notas:
-
-- `mcc225` es el nombre de la imagen.
-- `mcc225-entorno` es solo un ejemplo de nombre del contenedor.
-- También puedes usar `mcc225_container` como nombre del contenedor.
-- `8899` es el puerto sugerido para evitar conflictos con `8080`, `8888` y `8891`.
+Si quieres GPU y Docker Desktop ya tiene soporte NVIDIA habilitado, puedes ejecutar el contenedor desde terminal con `--gpus all`.
 
 Después abre:
 
@@ -265,88 +255,101 @@ Después abre:
 http://localhost:8899/lab
 ```
 
-#### 9. Cómo usar los dos archivos de requirements fuera de Docker
+#### 8. Qué instalan los requirements
 
-##### Opción A. Solo base
+##### `requirements-base.txt`
 
-```bash
-pip install -r requirements-base.txt
-```
+Incluye, entre otros:
 
-##### Opción B. Base + opcional
+- JupyterLab
+- NumPy
+- pandas
+- SciPy
+- scikit-learn
+- matplotlib
+- NLTK
+- spaCy
+- Transformers
+- Datasets
+- evaluate
+- accelerate
 
-```bash
-pip install -r requirements-base.txt
-pip install -r requirements-opcional.txt
-```
+##### `requirements-opcional.txt`
 
-##### Opción C. En una sola línea
+Incluye, entre otros:
 
-```bash
-pip install -r requirements-base.txt -r requirements-opcional.txt
-```
+- sentence-transformers
+- FAISS CPU
+- PEFT
+- TRL
+- OpenCLIP
+- Diffusers
+- timm
+- Gradio
+- Streamlit
+- Plotly
+- FastAPI
+- Uvicorn
 
-> Nota: PyTorch en este proyecto se instala desde el `Dockerfile` para poder elegir CPU o CUDA con `TORCH_FLAVOR`.
+#### 9. Validar el entorno
 
-#### 10. Qué instala cada archivo
+Dentro de JupyterLab puedes probar:
 
-- `requirements-base.txt`: núcleo del entorno, ciencia de datos, PyTorch elegido desde el `Dockerfile`, NLP clásico y moderno, `transformers`, `datasets`, `evaluate`, `spaCy`, `NLTK` y utilidades generales.
-- `requirements-opcional.txt`: retrieval, embeddings, PEFT, alignment ligero, multimodalidad, demos, `timm`, `streamlit` y servicios simples.
-
-#### 11. Recomendación práctica
-
-No construyas de una sola vez con los opcionales hasta confirmar que la base ya funciona.
-
-El `Dockerfile` ya separa ambas fases con `INSTALL_OPCIONAL`, así que conviene aprovecharlo:
-
-1. construye primero con `INSTALL_OPCIONAL=false`
-2. si funciona, construye con `INSTALL_OPCIONAL=true`
-
-Si la build base pasa y la build opcional falla, entonces el siguiente conflicto estará en `requirements-opcional.txt`, no en el entorno principal.
-
-#### 12. Validar el entorno
-
-Abre `verificacion_entorno.ipynb` en JupyterLab y ejecuta todas las celdas.
-
-La validación debería comprobar, como mínimo:
-
-- Versión de Python
-- Imports principales
-- Disponibilidad de `torch`
-- Detección de `cuda` cuando corresponda
-- Carga de tokenizer de Hugging Face
-- Carga de un dataset pequeño
-- Funcionamiento básico de spaCy y NLTK
-- Imports de `sentence_transformers`, `peft`, `diffusers`, `open_clip_torch`, `faiss`, `gradio` y `streamlit`.
-
-#### 13. Verificación rápida dentro del contenedor
-
-```bash
-python - <<'PY'
+```python
 import torch
 print("torch.__version__ =", torch.__version__)
 print("torch.version.cuda =", torch.version.cuda)
 print("torch.cuda.is_available() =", torch.cuda.is_available())
-print("torch.backends.cuda.is_built() =", torch.backends.cuda.is_built())
 if torch.cuda.is_available():
     print("GPU =", torch.cuda.get_device_name(0))
-PY
 ```
 
-#### 14. Problemas comunes
+Para validar acceso a Hugging Face y `datasets`:
 
-##### El build sigue fallando
+```python
+import requests
+from datasets import load_dataset
 
-Reconstruye sin caché para evitar reutilizar capas antiguas:
+print("homepage:", requests.get("https://huggingface.co", timeout=30).status_code)
+print("dataset api:", requests.get("https://huggingface.co/api/datasets/ag_news", timeout=30).status_code)
+
+ds = load_dataset("ag_news", split="train[:5]")
+print(ds)
+print(ds[0])
+```
+
+#### 10. Cuándo debes reconstruir la imagen
+
+##### Sí debes reconstruir la imagen si cambias:
+
+- `Dockerfile`
+- `requirements-base.txt`
+- `requirements-opcional.txt`
+- la versión de `TORCH_FLAVOR`
+
+Ejemplo: si antes construiste con CPU y ahora quieres GPU, debes volver a construir.
+
+##### No necesitas reconstruir la imagen si solo cambias:
+
+- `Docker.md`
+- notebooks
+- archivos `.py`
+- archivos de clase montados con `-v $(pwd):/workspace`
+
+En esos casos basta con volver a ejecutar el contenedor, o incluso solo refrescar Jupyter si el contenedor sigue corriendo.
+
+#### 11. Problemas comunes
+
+##### El build falla porque Docker no responde
+
+Prueba:
 
 ```bash
-docker build --no-cache \
-  --build-arg TORCH_FLAVOR=cpu \
-  --build-arg INSTALL_OPCIONAL=false \
-  -t mcc225 .
+docker version
+docker info
 ```
 
-Si la build base funciona y la build completa falla, revisa entonces `requirements-opcional.txt`.
+Si eso falla, abre Docker Desktop y verifica que esté activo.
 
 ##### El puerto 8899 está ocupado
 
@@ -362,42 +365,54 @@ En ese caso abre:
 http://localhost:8900/lab
 ```
 
-##### spaCy no descarga el modelo
+##### `torch.cuda.is_available()` sigue en `False`
 
-Dentro del contenedor:
+Revisa lo siguiente:
 
-```bash
-python -m spacy download es_core_news_sm
+1. Construiste la imagen con `TORCH_FLAVOR=cu121` o `cu124`
+2. Ejecutaste el contenedor con `--gpus all`
+3. La PC host realmente tiene GPU NVIDIA compatible
+4. Docker Desktop tiene acceso a GPU
+
+##### `datasets` o modelos de Hugging Face tardan demasiado
+
+El `Dockerfile` ya deja configurado:
+
+```text
+HF_HUB_ETAG_TIMEOUT=60
+HF_HUB_DOWNLOAD_TIMEOUT=120
 ```
 
-##### Construiste una imagen GPU, pero sigue saliendo CPU
+Eso ayuda cuando la red es lenta o la respuesta del Hub tarda más que el valor por defecto.
 
-Revisa estas tres cosas:
+#### 12. Comandos mínimos recomendados
 
-1. que hayas construido con `TORCH_FLAVOR=cu121` o `cu124`
-2. que al ejecutar uses `--gpus all`
-3. que Docker Desktop, drivers NVIDIA y el runtime de GPU estén correctamente configurados en la PC host
-
-##### Quieres eliminar el warning `JSONArgsRecommended`
-
-No es obligatorio, pero se puede mejorar cambiando el `CMD` del `Dockerfile` a formato JSON.
-
-#### 15. Comandos mínimos recomendados
+##### Base CPU
 
 ```bash
-docker build --no-cache \
-  --build-arg TORCH_FLAVOR=cpu \
-  --build-arg INSTALL_OPCIONAL=false \
-  -t mcc225 .
+docker build --no-cache --build-arg TORCH_FLAVOR=cpu --build-arg INSTALL_OPCIONAL=false -t mcc225 .
+```
 
-docker build --no-cache \
-  --build-arg TORCH_FLAVOR=cpu \
-  --build-arg INSTALL_OPCIONAL=true \
-  -t mcc225 .
+##### Completo CPU
 
-docker run -it --rm \
-  --name mcc225_container \
-  -p 8899:8899 \
-  -v "$(pwd)":/workspace \
-  mcc225
+```bash
+docker build --no-cache --build-arg TORCH_FLAVOR=cpu --build-arg INSTALL_OPCIONAL=true -t mcc225 .
+```
+
+##### Completo GPU
+
+```bash
+docker build --no-cache --build-arg TORCH_FLAVOR=cu121 --build-arg INSTALL_OPCIONAL=true -t mcc225 .
+```
+
+##### Ejecutar CPU
+
+```bash
+docker run -it --rm --name mcc225_container -p 8899:8899 -v "$(pwd)":/workspace mcc225
+```
+
+##### Ejecutar GPU
+
+```bash
+docker run -it --rm --gpus all --name mcc225_container -p 8899:8899 -v "$(pwd)":/workspace mcc225
 ```
