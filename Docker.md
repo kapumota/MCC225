@@ -1,8 +1,16 @@
-### Docker para MCC225
+### Docker para MCC225 (Windows CPU + Linux CPU/GPU)
 
-Guía práctica para construir y ejecutar el entorno reproducible del curso con Docker usando la imagen **`mcc225`**.
+Guía práctica para construir y ejecutar el entorno reproducible del curso **MCC225** con un solo `Dockerfile` y **dos imágenes distintas**:
 
-> En este proyecto la carpeta del curso puede tener cualquier nombre, pero la **imagen Docker** se construirá con el nombre **`mcc225`**.
+- **`mcc225_cpu`**: para usar en **Windows con Docker Desktop** y también en Linux cuando solo se quiera CPU.
+- **`mcc225_gpu`**: para usar en **Linux con GPU NVIDIA**.
+
+> **Criterio de uso de este documento**
+>
+> - En **Windows** se trabajará con **Docker Desktop** y **solo CPU**.
+> - En la otra PC con **Linux** se quiere disponer de **dos variantes** del entorno: **CPU** y **GPU**.
+> - En Linux, para la variante GPU, conviene usar el **Docker Engine del host** con **NVIDIA Container Toolkit**.
+> - Si en Linux también está instalado Docker Desktop, conviene revisar el contexto activo y usar `default` para la ejecución con GPU.
 
 #### 1. Estructura recomendada
 
@@ -11,7 +19,7 @@ MCC225/
 ├── Dockerfile
 ├── requirements-base.txt
 ├── requirements-opcional.txt
-├── Docker.md
+├── Docker-mcc225.md
 ├── verificacion_entorno.ipynb
 ├── .dockerignore
 └── Semana1/
@@ -23,171 +31,158 @@ MCC225/
 
 El `Dockerfile` de este proyecto:
 
-- Usa `python:3.11-slim`
-- Copia `requirements-base.txt` y `requirements-opcional.txt`
-- Instala primero la base y luego, si corresponde, los paquetes opcionales
-- Instala `PyTorch`, `torchvision` y `torchaudio` desde el índice oficial de PyTorch según el argumento `TORCH_FLAVOR`
-- Permite construir imagen para `cpu`, `cu118`, `cu121` o `cu124`
-- Descarga recursos de `nltk`
-- Descarga el modelo `es_core_news_sm` de `spaCy`
-- Deja configurados `HF_HUB_ETAG_TIMEOUT=60` y `HF_HUB_DOWNLOAD_TIMEOUT=120`
-- Expone `JupyterLab` en el puerto `8899`
+- usa `python:3.11-slim`
+- copia `requirements-base.txt` y `requirements-opcional.txt`
+- instala primero la base y luego, si corresponde, los paquetes opcionales
+- instala `torch`, `torchvision` y `torchaudio` según el argumento `TORCH_FLAVOR`
+- permite construir imagen para `cpu`, `cu118`, `cu121` o `cu124`
+- descarga recursos de `nltk`
+- descarga el modelo `es_core_news_sm` de `spaCy`
+- configura `HF_HUB_ETAG_TIMEOUT=60` y `HF_HUB_DOWNLOAD_TIMEOUT=120`
+- expone `JupyterLab` en el puerto `8899`
 
-#### 3. Importante: CPU o GPU
+#### 3. Estrategia recomendada para este curso
 
-Este entorno permite dos estrategias:
+En vez de reutilizar siempre el mismo tag `mcc225`, conviene usar **dos tags distintos** para evitar confusiones entre equipos:
 
-##### 3.1 Build CPU
+- **`mcc225_cpu`**
+- **`mcc225_gpu`**
 
-Si quieres una imagen CPU:
+Ventajas:
 
-```bash
-docker build --no-cache \
-  --build-arg TORCH_FLAVOR=cpu \
-  --build-arg INSTALL_OPCIONAL=true \
-  -t mcc225 .
-```
+- evita sobrescribir una imagen con otra
+- deja claro qué imagen corresponde a cada máquina
+- simplifica el soporte cuando alguien comparte capturas o comandos
+- permite que en Linux convivan las dos variantes al mismo tiempo
 
-##### 3.2 Build GPU
+#### 4. Qué usar en cada sistema
 
-Si quieres una imagen con soporte CUDA, elige una variante soportada por PyTorch 2.4.1.
+##### 4.1 Windows
 
-###### CUDA 12.1
+En **Windows** se usará **Docker Desktop** con imagen **CPU**:
 
-```bash
-docker build --no-cache \
-  --build-arg TORCH_FLAVOR=cu121 \
-  --build-arg INSTALL_OPCIONAL=true \
-  -t mcc225 .
-```
+- imagen recomendada: `mcc225_cpu`
+- build con `TORCH_FLAVOR=cpu`
+- ejecución **sin** `--gpus all`
 
-##### CUDA 12.4
+##### 4.2 Linux
 
-```bash
-docker build --no-cache \
-  --build-arg TORCH_FLAVOR=cu124 \
-  --build-arg INSTALL_OPCIONAL=true \
-  -t mcc225 .
-```
+En **Linux** se recomienda tener ambas imágenes:
 
-#### 4. Construir la imagen paso a paso
+- `mcc225_cpu` para pruebas generales o equipos sin uso de GPU
+- `mcc225_gpu` para prácticas que necesiten aceleración con NVIDIA
 
-##### 4.1 Entrar a la carpeta del proyecto
+Para la variante GPU en Linux, usa el **daemon del host** y no dependas de `desktop-linux`.
 
-**Linux/macOS/Git Bash**
+#### 5. Variantes de PyTorch recomendadas
 
-```bash
-cd /ruta/a/MCC225
-ls
-```
+Recomendación práctica para este documento:
 
-Debes ver al menos:
+- **CPU**: `TORCH_FLAVOR=cpu`
+- **GPU Linux NVIDIA**: `TORCH_FLAVOR=cu121`
+- **Alternativa GPU**: `TORCH_FLAVOR=cu124`
 
-```text
-Dockerfile
-requirements-base.txt
-requirements-opcional.txt
-```
+`cu121` suele ser una buena opción por compatibilidad amplia. `cu124` puede usarse si tu host y tu flujo ya están alineados con esa variante.
 
-##### 4.2 Construir primero solo la base
+#### 6. Construcción de imágenes
 
-Conviene validar primero el entorno principal, sin paquetes opcionales:
+##### 6.1 Build base CPU
+
+Útil para validar primero el entorno principal sin paquetes opcionales:
 
 ```bash
 docker build --no-cache \
   --build-arg TORCH_FLAVOR=cpu \
   --build-arg INSTALL_OPCIONAL=false \
-  -t mcc225 .
+  -t mcc225_cpu .
 ```
 
-##### 4.3 Construir la imagen completa
+##### 6.2 Build completa CPU
 
-Si el paso anterior termina bien, construye base + opcional:
+Esta es la build recomendada para **Windows con Docker Desktop** y también para Linux CPU:
 
 ```bash
 docker build --no-cache \
   --build-arg TORCH_FLAVOR=cpu \
   --build-arg INSTALL_OPCIONAL=true \
-  -t mcc225 .
+  -t mcc225_cpu .
 ```
 
-Si quieres la variante GPU, cambia `TORCH_FLAVOR=cpu` por `cu121` o `cu124`.
+##### 6.3 Build completa GPU para Linux
 
-##### 4.4 Verificar que la imagen exista
+Variante recomendada:
+
+```bash
+docker build --no-cache \
+  --build-arg TORCH_FLAVOR=cu121 \
+  --build-arg INSTALL_OPCIONAL=true \
+  -t mcc225_gpu .
+```
+
+Si necesitas CUDA 12.4:
+
+```bash
+docker build --no-cache \
+  --build-arg TORCH_FLAVOR=cu124 \
+  --build-arg INSTALL_OPCIONAL=true \
+  -t mcc225_gpu .
+```
+
+##### 6.4 Verificar imágenes construidas
+
+Linux/macOS/Git Bash:
 
 ```bash
 docker images | grep mcc225
 ```
 
-En PowerShell puedes usar:
+PowerShell:
 
 ```powershell
-docker images mcc225
+docker images mcc225_cpu
+docker images mcc225_gpu
 ```
 
-#### 5. Ejecutar el contenedor desde terminal
+#### 7. Ejecución del contenedor
 
-##### 5.1 Linux/macOS/Git Bash
+##### 7.1 Windows PowerShell con Docker Desktop (CPU)
 
-##### CPU
+```powershell
+docker run -it --rm `
+  --name mcc225_cpu_container `
+  -p 8899:8899 `
+  -v "${PWD}:/workspace" `
+  mcc225_cpu
+```
+
+##### 7.2 Windows CMD con Docker Desktop (CPU)
+
+```bat
+docker run -it --rm --name mcc225_cpu_container -p 8899:8899 -v %cd%:/workspace mcc225_cpu
+```
+
+##### 7.3 Linux/macOS/Git Bash (CPU)
 
 ```bash
 docker run -it --rm \
-  --name mcc225_container \
+  --name mcc225_cpu_container \
   -p 8899:8899 \
   -v "$(pwd)":/workspace \
-  mcc225
+  mcc225_cpu
 ```
 
-##### GPU
+##### 7.4 Linux con GPU NVIDIA
 
 ```bash
 docker run -it --rm \
   --gpus all \
-  --name mcc225_container \
+  --name mcc225_gpu_container \
   -p 8899:8899 \
   -v "$(pwd)":/workspace \
-  mcc225
+  mcc225_gpu
 ```
 
-##### 5.2 Windows PowerShell
-
-###### CPU
-
-```powershell
-docker run -it --rm `
-  --name mcc225_container `
-  -p 8899:8899 `
-  -v "${PWD}:/workspace" `
-  mcc225
-```
-
-##### GPU
-
-```powershell
-docker run -it --rm `
-  --gpus all `
-  --name mcc225_container `
-  -p 8899:8899 `
-  -v "${PWD}:/workspace" `
-  mcc225
-```
-
-#### 5.3 Windows CMD
-
-##### CPU
-
-```bat
-docker run -it --rm --name mcc225_container -p 8899:8899 -v %cd%:/workspace mcc225
-```
-
-##### GPU
-
-```bat
-docker run -it --rm --gpus all --name mcc225_container -p 8899:8899 -v %cd%:/workspace mcc225
-```
-
-#### 6. Abrir JupyterLab
+#### 8. Abrir JupyterLab
 
 Al iniciar el contenedor, abre en el navegador:
 
@@ -197,103 +192,77 @@ http://localhost:8899/lab
 
 Si Jupyter muestra token, cópialo desde los logs del contenedor.
 
-#### 7. Paso a paso con Docker Desktop
+#### 9. Windows: pauta operativa recomendada
 
-##### 7.1 Antes de construir
+Para este curso, en Windows deja el flujo así:
 
-Abre **Docker Desktop** y asegúrate de que:
+1. instala Docker Desktop
+2. verifica que esté usando **Linux containers**
+3. verifica que el engine esté activo
+4. construye solo la imagen `mcc225_cpu`
+5. ejecuta el contenedor sin `--gpus all`
 
-- Docker Desktop esté iniciado
-- el engine esté funcionando
-- estés usando **Linux containers**
+Comprobaciones útiles en Windows:
 
-Si el comando `docker build` falla con un error de conexión al engine, normalmente significa que Docker Desktop no está iniciado o no está en modo Linux containers.
+```powershell
+docker version
+docker info
+wsl --status
+```
 
-##### 7.2 Construir la imagen
+#### 10. Linux: CPU y GPU en la misma PC
 
-Puedes usar la terminal integrada de Docker Desktop o una terminal normal con Docker Desktop ya iniciado.
+En Linux puedes tener **las dos imágenes a la vez**:
 
-Primero prueba la build base:
+- `mcc225_cpu`
+- `mcc225_gpu`
+
+Eso permite:
+
+- probar notebooks ligeros con CPU
+- reservar GPU para prácticas de entrenamiento o inferencia pesada
+- comparar `torch.cuda.is_available()` entre ambos entornos
+
+#### 11. Requisitos para usar GPU en Linux
+
+Para la variante GPU en Linux, el host necesita:
+
+- una **GPU NVIDIA compatible**
+- drivers NVIDIA correctamente instalados
+- **NVIDIA Container Toolkit**
+- ejecución del contenedor con `--gpus all`
+
+##### 11.1 Prueba rápida del host Linux
+
+Antes de usar `mcc225_gpu`, conviene validar el host con:
 
 ```bash
-docker build --no-cache \
-  --build-arg TORCH_FLAVOR=cpu \
-  --build-arg INSTALL_OPCIONAL=false \
-  -t mcc225 .
+nvidia-smi
 ```
 
-Si termina bien, construye la imagen completa:
+Luego prueba Docker + GPU:
 
 ```bash
-docker build --no-cache \
-  --build-arg TORCH_FLAVOR=cpu \
-  --build-arg INSTALL_OPCIONAL=true \
-  -t mcc225 .
+docker run --rm --runtime=nvidia --gpus all ubuntu nvidia-smi
 ```
 
-Si quieres GPU, cambia `TORCH_FLAVOR=cpu` por `cu121` o `cu124`.
+##### 11.2 Si Linux también tiene Docker Desktop instalado
 
-##### 7.3 Ejecutar la imagen desde la interfaz
+Comprueba el contexto:
 
-En **Images**, busca `mcc225` y pulsa **Run**.
-
-Completa los campos así:
-
-```text
-Container name: mcc225_container
-Host port: 8899
-Host path: C:\Users\TU_USUARIO\ruta\MCC225
-Container path: /workspace
-Environment variables: dejar vacío
+```bash
+docker context ls
 ```
 
-Si quieres GPU y Docker Desktop ya tiene soporte NVIDIA habilitado, puedes ejecutar el contenedor desde terminal con `--gpus all`.
+Si aparece activo `desktop-linux`, cambia al daemon del host:
 
-Después abre:
-
-```text
-http://localhost:8899/lab
+```bash
+docker context use default
 ```
 
-#### 8. Qué instalan los requirements
+#### 12. Validación dentro del contenedor
 
-##### `requirements-base.txt`
-
-Incluye, entre otros:
-
-- JupyterLab
-- NumPy
-- pandas
-- SciPy
-- scikit-learn
-- matplotlib
-- NLTK
-- spaCy
-- Transformers
-- Datasets
-- evaluate
-- accelerate
-
-##### `requirements-opcional.txt`
-
-Incluye, entre otros:
-
-- sentence-transformers
-- FAISS CPU
-- PEFT
-- TRL
-- OpenCLIP
-- Diffusers
-- timm
-- Gradio
-- Streamlit
-- Plotly
-- FastAPI
-- Uvicorn
-
-#### 9. Validar el entorno
-
-Dentro de JupyterLab puedes probar:
+En JupyterLab o en la terminal del contenedor:
 
 ```python
 import torch
@@ -302,117 +271,120 @@ print("torch.version.cuda =", torch.version.cuda)
 print("torch.cuda.is_available() =", torch.cuda.is_available())
 if torch.cuda.is_available():
     print("GPU =", torch.cuda.get_device_name(0))
+else:
+    print("Sin GPU visible en el contenedor")
 ```
 
-Para validar acceso a Hugging Face y `datasets`:
+También puedes usar una verificación corta:
 
-```python
-import requests
-from datasets import load_dataset
-
-print("homepage:", requests.get("https://huggingface.co", timeout=30).status_code)
-print("dataset api:", requests.get("https://huggingface.co/api/datasets/ag_news", timeout=30).status_code)
-
-ds = load_dataset("ag_news", split="train[:5]")
-print(ds)
-print(ds[0])
+```bash
+python -c "import torch; print(torch.__version__); print('cuda:', torch.cuda.is_available()); print('count:', torch.cuda.device_count()); print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'sin GPU')"
 ```
 
-#### 10. Cuándo debes reconstruir la imagen
+#### 13. Cuándo reconstruir la imagen
 
-##### Sí debes reconstruir la imagen si cambias:
+Sí debes reconstruir si cambias:
 
 - `Dockerfile`
 - `requirements-base.txt`
 - `requirements-opcional.txt`
-- la versión de `TORCH_FLAVOR`
+- `TORCH_FLAVOR`
 
-Ejemplo: si antes construiste con CPU y ahora quieres GPU, debes volver a construir.
+No necesitas reconstruir si solo cambias:
 
-##### No necesitas reconstruir la imagen si solo cambias:
-
-- `Docker.md`
 - notebooks
 - archivos `.py`
-- archivos de clase montados con `-v $(pwd):/workspace`
+- archivos `.md`
+- material montado con `-v ...:/workspace`
 
-En esos casos basta con volver a ejecutar el contenedor, o incluso solo refrescar Jupyter si el contenedor sigue corriendo.
+#### 14. Problemas comunes
 
-#### 11. Problemas comunes
-
-##### El build falla porque Docker no responde
+##### 14.1 Docker Desktop no responde en Windows
 
 Prueba:
 
-```bash
+```powershell
 docker version
 docker info
 ```
 
-Si eso falla, abre Docker Desktop y verifica que esté activo.
+Si falla, abre Docker Desktop y verifica que el engine esté operativo.
 
-##### El puerto 8899 está ocupado
+##### 14.2 El puerto 8899 está ocupado
 
 Usa otro puerto del host, por ejemplo `8900`:
 
-```bash
-docker run -it --rm -p 8900:8899 -v "$(pwd)":/workspace mcc225
+Windows PowerShell:
+
+```powershell
+docker run -it --rm `
+  --name mcc225_cpu_container `
+  -p 8900:8899 `
+  -v "${PWD}:/workspace" `
+  mcc225_cpu
 ```
 
-En ese caso abre:
+Linux:
+
+```bash
+docker run -it --rm -p 8900:8899 -v "$(pwd)":/workspace mcc225_cpu
+```
+
+Luego abre:
 
 ```text
 http://localhost:8900/lab
 ```
 
-##### `torch.cuda.is_available()` sigue en `False`
+##### 14.3 En Linux, `torch.cuda.is_available()` sigue en `False`
 
-Revisa lo siguiente:
+Revisa en este orden:
 
-1. Construiste la imagen con `TORCH_FLAVOR=cu121` o `cu124`
-2. Ejecutaste el contenedor con `--gpus all`
-3. La PC host realmente tiene GPU NVIDIA compatible
-4. Docker Desktop tiene acceso a GPU
+1. el host detecta la GPU con `nvidia-smi`
+2. `docker run --rm --runtime=nvidia --gpus all ubuntu nvidia-smi` funciona
+3. construiste `mcc225_gpu` con `TORCH_FLAVOR=cu121` o `cu124`
+4. ejecutaste el contenedor con `--gpus all`
+5. si usas Docker Desktop en Linux, cambiaste a `docker context use default`
 
-##### `datasets` o modelos de Hugging Face tardan demasiado
+##### 14.4 Se sobreescribió una imagen por reutilizar el mismo tag
 
-El `Dockerfile` ya deja configurado:
+Evítalo usando siempre:
 
-```text
-HF_HUB_ETAG_TIMEOUT=60
-HF_HUB_DOWNLOAD_TIMEOUT=120
+- `mcc225_cpu`
+- `mcc225_gpu`
+
+En lugar de usar `mcc225` para todo.
+
+#### 15. Comandos mínimos recomendados
+
+##### 15.1 Windows con Docker Desktop (CPU)
+
+```powershell
+docker build --no-cache --build-arg TORCH_FLAVOR=cpu --build-arg INSTALL_OPCIONAL=true -t mcc225_cpu .
+docker run -it --rm --name mcc225_cpu_container -p 8899:8899 -v "${PWD}:/workspace" mcc225_cpu
 ```
 
-Eso ayuda cuando la red es lenta o la respuesta del Hub tarda más que el valor por defecto.
-
-#### 12. Comandos mínimos recomendados
-
-##### Base CPU
+##### 15.2 Linux CPU
 
 ```bash
-docker build --no-cache --build-arg TORCH_FLAVOR=cpu --build-arg INSTALL_OPCIONAL=false -t mcc225 .
+docker build --no-cache --build-arg TORCH_FLAVOR=cpu --build-arg INSTALL_OPCIONAL=true -t mcc225_cpu .
+docker run -it --rm --name mcc225_cpu_container -p 8899:8899 -v "$(pwd)":/workspace mcc225_cpu
 ```
 
-##### Completo CPU
+##### 15.3 Linux GPU
 
 ```bash
-docker build --no-cache --build-arg TORCH_FLAVOR=cpu --build-arg INSTALL_OPCIONAL=true -t mcc225 .
+docker context use default
+docker build --no-cache --build-arg TORCH_FLAVOR=cu121 --build-arg INSTALL_OPCIONAL=true -t mcc225_gpu .
+docker run -it --rm --gpus all --name mcc225_gpu_container -p 8899:8899 -v "$(pwd)":/workspace mcc225_gpu
 ```
 
-##### Completo GPU
+#### 16. Resumen final de la adaptación
 
-```bash
-docker build --no-cache --build-arg TORCH_FLAVOR=cu121 --build-arg INSTALL_OPCIONAL=true -t mcc225 .
-```
+La adaptación recomendada para `Docker-mcc225` queda así:
 
-##### Ejecutar CPU
-
-```bash
-docker run -it --rm --name mcc225_container -p 8899:8899 -v "$(pwd)":/workspace mcc225
-```
-
-##### Ejecutar GPU
-
-```bash
-docker run -it --rm --gpus all --name mcc225_container -p 8899:8899 -v "$(pwd)":/workspace mcc225
-```
+- **Windows + Docker Desktop**: documentar **solo CPU**
+- **Linux**: documentar **CPU y GPU**
+- usar **dos tags** distintos: `mcc225_cpu` y `mcc225_gpu`
+- para **GPU en Linux**, usar **Docker Engine del host** + **NVIDIA Container Toolkit**
+- mantener `TORCH_FLAVOR=cpu`, `cu121` y opcionalmente `cu124` según el escenario.
