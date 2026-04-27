@@ -1,0 +1,7 @@
+,child_play,cooking,industrial_workers,maintenance,people_outdoors,performance
+child_play,1,0,0,0,0,0
+cooking,0,1,0,0,0,0
+industrial_workers,0,0,1,0,0,0
+maintenance,0,0,0,1,0,0
+people_outdoors,0,0,0,1,0,0
+performance,0,0,0,0,0,1
