@@ -1,0 +1,4 @@
+tag,model_name,pretrained,i2t_R@1,i2t_MRR,t2i_R@1,t2i_MRR,zeroshot_ensemble_acc,status
+vit_b32_laion2b,ViT-B-32,laion2b_s34b_b79k,1.0,1.0,0.9333333333333333,0.9666666666666667,0.8333333333333334,ok
+vit_b16_datacomp,ViT-B-16,datacomp_xl_s13b_b90k,1.0,1.0,0.9333333333333333,0.9666666666666667,1.0,ok
+vit_l14_openai,ViT-L-14,openai,1.0,1.0,0.9666666666666667,0.9833333333333333,0.8333333333333334,ok
