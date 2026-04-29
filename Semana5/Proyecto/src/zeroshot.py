@@ -44,7 +44,7 @@ def evaluate_prompt_templates(image_features: np.ndarray, true_labels: List[str]
     labels, ensemble_feats = aggregate_label_embeddings({label: [t.format(label_map[label]) for t in templates] for label in label_map.keys()}, encoder_fn)
     ensemble_preds, ensemble_scores = predict(image_features, ensemble_feats, labels)
     ensemble_acc = float(np.mean([p == y for p, y in zip(ensemble_preds, true_labels)]))
-    rows.append({'mode': 'prompt_ensemble', 'template': ' | '.join(templates), 'accuracy': ensemble_acc})
+    rows.append({'mode': 'prompt_ensemble','template': '; '.join(templates),'accuracy': ensemble_acc})
     summary = pd.DataFrame(rows).sort_values(['accuracy', 'mode'], ascending=[False, True]).reset_index(drop=True)
     pred_df = pd.DataFrame({'true_label': true_labels, 'pred_label': ensemble_preds})
     conf = confusion_from_predictions(true_labels, ensemble_preds)
