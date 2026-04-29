@@ -1,5 +1,0 @@
-mode,template,accuracy
-prompt_ensemble,a photo of {} | an image of {} | a caption about {},0.8333333333333334
-single_template,a photo of {},0.8333333333333334
-single_template,an image of {},0.8333333333333334
-single_template,a caption about {},0.8333333333333334

@@ -1,7 +1,0 @@
-image_index,image_id,negative_caption_id,negative_caption,negative_label,score
-0,flickr30k_0000,flickr30k_0003_3,Man in blue shirt and jeans on ladder cleaning windows,maintenance,0.23179540038108826
-5,flickr30k_0005,flickr30k_0000_0,Two young guys with shaggy hair look at their hands while hanging out in the yard.,people_outdoors,0.23004837334156036
-4,flickr30k_0004,flickr30k_0000_4,Two friends enjoy time spent together.,people_outdoors,0.21432791650295258
-1,flickr30k_0001,flickr30k_0003_2,A man on a ladder cleans the window of a tall building.,maintenance,0.21065813302993774
-3,flickr30k_0003,flickr30k_0001_0,Several men in hard hats are operating a giant pulley system.,industrial_workers,0.20545153319835663
-2,flickr30k_0002,flickr30k_0000_4,Two friends enjoy time spent together.,people_outdoors,0.17195343971252441
