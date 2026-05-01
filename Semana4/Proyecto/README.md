@@ -61,7 +61,6 @@ Semana4/
     │   ├── figures/
     │   ├── logs/
     │   └── metrics/
-    ├── reports/
     ├── scripts/
     ├── slurm/
     └── src/
@@ -72,8 +71,7 @@ Archivos clave:
 | Ruta | Función |
 |---|---|
 | `scripts/00_verify_env.py` | Verifica Python, PyTorch, CUDA, OpenCLIP y dependencias principales. |
-| `scripts/01_prepare_flickr1k_from_hf.py` | Prepara un subconjunto de `Vishva007/Flickr-Dataset-1k`. |
-| `scripts/01_prepare_flickr30k_from_hf.py` | Wrapper de compatibilidad hacia el script de Flickr1k. |
+| `scripts/01_prepare_flickr30k_from_hf.py` | Prepara un subconjunto de `Vishva007/Flickr-Dataset-1k`. El nombre se conserva por compatibilidad histórica. |
 | `scripts/02_build_embeddings.py` | Genera embeddings normalizados de imágenes y captions. |
 | `scripts/03_eval_retrieval.py` | Calcula métricas de recuperación cruzada. |
 | `scripts/04_eval_zeroshot.py` | Ejecuta una evaluación zero-shot simple sobre el bootstrap. |
@@ -141,7 +139,7 @@ Si `docker ps` muestra otro nombre, usar el nombre real del contenedor en los co
 
 #### 6. Acceso al contenedor Docker
 
-##### 6.1 Entrar al contenedor con docker exec
+#### 6.1 Entrar al contenedor con docker exec
 
 Este comando se ejecuta desde el sistema anfitrión:
 
@@ -151,7 +149,7 @@ docker exec -it mcc225_gpu_container bash
 
 Después de ejecutarlo, el prompt ya corresponde al entorno interno del contenedor.
 
-##### 6.2 Confirmar que estás dentro del contenedor
+#### 6.2 Confirmar que estás dentro del contenedor
 
 Dentro del contenedor, verificar la ruta base:
 
@@ -181,7 +179,7 @@ print(torch.cuda.device_count())
 PY
 ```
 
-##### 6.3 Ubicarse en el proyecto
+#### 6.3 Ubicarse en el proyecto
 
 Los comandos del laboratorio se ejecutan dentro del contenedor, desde esta carpeta:
 
@@ -306,10 +304,10 @@ El script acepta `Vishva007/Flickr-Dataset-1` y lo normaliza a `Vishva007/Flickr
 
 #### 10. Ejecución paso a paso dentro del contenedor
 
-##### 10.1 Preparar Flickr1k
+#### 10.1 Preparar Flickr1k
 
 ```bash
-python scripts/01_prepare_flickr1k_from_hf.py \
+python scripts/01_prepare_flickr30k_from_hf.py \
   --dataset-name Vishva007/Flickr-Dataset-1k \
   --hf-split train \
   --output-root data/processed/flickr1k_hf \
@@ -318,7 +316,7 @@ python scripts/01_prepare_flickr1k_from_hf.py \
   --test-limit 50
 ```
 
-##### 10.2 Construir embeddings
+#### 10.2 Construir embeddings
 
 ```bash
 python scripts/02_build_embeddings.py \
@@ -330,7 +328,7 @@ python scripts/02_build_embeddings.py \
   --output outputs/embeddings/flickr1k_embeddings.npz
 ```
 
-##### 10.3 Evaluar recuperación cruzada
+#### 10.3 Evaluar recuperación cruzada
 
 ```bash
 python scripts/03_eval_retrieval.py \
@@ -341,7 +339,7 @@ python scripts/03_eval_retrieval.py \
   --top-n-hard-negatives 20
 ```
 
-##### 10.4 Minar negativos duros
+#### 10.4 Minar negativos duros
 
 ```bash
 python scripts/05_mine_hard_negatives.py \
@@ -410,7 +408,7 @@ Métricas principales:
 
 #### 14. Actividad de laboratorio
 
-##### 14.1 Parte A: smoke test local
+#### 14.1 Parte A: smoke test local
 
 Ejecutar:
 
@@ -430,9 +428,9 @@ Preguntas:
 
 1. ¿Qué significa `R@1` en recuperación imagen a texto?
 2. ¿Por qué `MRR` puede ser más informativo que accuracy en retrieval?
-3. ¿Qué diferencia hay entre evaluar con una caption por imagen y evaluar con todas las captions?.
+3. ¿Qué diferencia hay entre evaluar con una caption por imagen y evaluar con todas las captions?
 
-##### 14.2 Parte B: Flickr1k
+#### 14.2 Parte B: Flickr1k
 
 Ejecutar:
 
@@ -446,7 +444,7 @@ Preguntas:
 2. ¿Los hard negatives son errores claros o confusiones semánticamente razonables?
 3. ¿Qué patrones de confusión aparecen en escenas con personas, objetos o actividades similares?
 
-##### 14.3 Parte C: análisis de error
+#### 14.3 Parte C: análisis de error
 
 Abrir:
 
@@ -464,19 +462,86 @@ Seleccionar cinco casos y completar:
 | 4 | | | | |
 | 5 | | | | |
 
-#### 15. Entrega mínima
+#### 15. Entregables sugeridos
+
+El estudiante debe entregar un informe breve en PDF, notebook exportado o documento indicado por el docente. No se debe crear un archivo Markdown adicional dentro del proyecto.
 
 El informe debe incluir:
 
-1. entorno usado dentro del contenedor,
-2. salida de `python scripts/00_verify_env.py`,
-3. comandos ejecutados,
-4. tabla con `R@1`, `R@5`, `R@10` y `MRR`,
-5. análisis de tres aciertos,
-6. análisis de tres errores o negativos duros,
-7. limitaciones del dataset y del modelo,
-8. una propuesta concreta de mejora.
+1. comandos ejecutados dentro del contenedor Docker,
+2. evidencia de ejecución del pipeline local con el bootstrap,
+3. evidencia de ejecución del pipeline remoto con `Vishva007/Flickr-Dataset-1k`, si hubo conexión a internet,
+4. tabla comparativa con `R@1`, `R@5`, `R@10` y `MRR`,
+5. análisis comentado de cinco hard negatives,
+6. comparación entre `--caption-mode first` y `--caption-mode all`,
+7. una mini ablación experimental,
+8. conclusiones técnicas y limitaciones del modelo.
 
+#### 15.1 Mini ablación sugerida
+
+Realizar al menos una de las siguientes variaciones:
+
+1. Cambiar el modo de captions.
+
+```bash
+--caption-mode first
+```
+
+```bash
+--caption-mode all
+```
+
+2. Cambiar el tamaño de batch.
+
+```bash
+--batch-size 16
+```
+
+```bash
+--batch-size 32
+```
+
+3. Comparar dos checkpoints de OpenCLIP.
+
+```bash
+--model-name ViT-B-32
+--pretrained laion2b_s34b_b79k
+```
+
+```bash
+--model-name RN50
+--pretrained openai
+```
+
+#### 15.2 Preguntas para el informe
+
+Responder brevemente:
+
+1. ¿Qué cambia entre evaluar con una sola caption y evaluar con todas las captions asociadas a la misma imagen?
+2. ¿Qué tipo de errores aparecen en los hard negatives?
+3. ¿El modelo confunde objetos, acciones, contexto o relaciones espaciales?
+4. ¿Qué checkpoint obtiene mejores métricas?
+5. ¿Qué limitaciones tiene el bootstrap local frente a Flickr1k?
+6. ¿Qué mejora concreta aplicarías en una siguiente versión del laboratorio?
+
+#### 15.3 Formato de entrega
+
+La entrega puede ser uno de estos formatos:
+
+1. PDF breve,
+2. notebook exportado a PDF,
+3. documento externo indicado por el docente,
+4. capturas y tablas pegadas en la plataforma del curso.
+
+No crear archivos adicionales como:
+
+```text
+reports/semana4_resultados.md
+LAB_SEMANA4.md
+CHANGELOG_UNIFORMIZACION.md
+```
+
+Toda la documentación del proyecto debe mantenerse en este `README.md`.
 
 #### 16. Flujo recomendado final
 
