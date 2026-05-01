@@ -35,10 +35,10 @@ def main():
     with open(args.prompt_config, "r", encoding="utf-8") as f:
         prompt_cfg = json.load(f)
 
-    bundle = np.load(args.embeddings, allow_pickle=True)
+    bundle = np.load(args.embeddings, allow_pickle=False)
     image_features = bundle["image_features"]
-    model_name = str(bundle["model_name"])
-    pretrained = str(bundle["pretrained"])
+    model_name = str(bundle["model_name"].item())
+    pretrained = str(bundle["pretrained"].item())
 
     model, _, tokenizer, device = create_model(model_name, pretrained)
     internal_labels, prompts = build_class_prompts(prompt_cfg["label_map"], prompt_cfg["templates"])

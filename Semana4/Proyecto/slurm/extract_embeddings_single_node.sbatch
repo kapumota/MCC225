@@ -15,4 +15,5 @@ python scripts/02_build_embeddings.py \
   --model-name ViT-B-32 \
   --pretrained laion2b_s34b_b79k \
   --batch-size 16 \
+  --caption-mode all \
   --output outputs/embeddings/bootstrap_embeddings.npz
