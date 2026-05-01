@@ -1,13 +1,12 @@
 # Extras mínimos para Semana4/Proyecto.
-# Este archivo complementa el entorno principal del repo MCC225.
-# Úsalo encima de requirements-base.txt + requirements-opcional.txt,
-# o dentro de la imagen Docker construida con INSTALL_OPCIONAL=true.
+# Complementa el entorno principal del repositorio MCC225.
+# No reemplaza requirements-base.txt ni requirements-opcional.txt.
 #
-# Motivo:
-# - El proyecto importa yaml.
-# - Este proyecto usa Flickr30k desde Hugging Face.
-# - Fijamos datasets<4 para evitar el error:
-#   "Dataset scripts are no longer supported, but found flickr30k.py"
+# Cambio 2026-05:
+# - El pipeline remoto usa Vishva007/Flickr-Dataset-1k, publicado en formato Parquet.
+# - Ya no depende del script legacy de nlphuji/flickr30k.
+# - Por eso no se fuerza datasets<4.
 
 PyYAML==6.0.2
-datasets==3.6.0
+datasets>=3.6.0,<5
+Pillow>=10
