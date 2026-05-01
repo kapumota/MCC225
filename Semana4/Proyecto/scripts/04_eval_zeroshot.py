@@ -2,6 +2,15 @@
 from __future__ import annotations
 import argparse
 from pathlib import Path
+import sys
+
+PROJECT_ROOT = next(
+    (p for p in Path(__file__).resolve().parents if (p / "src").is_dir()),
+    Path(__file__).resolve().parent,
+)
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 import json
 import numpy as np
 import pandas as pd

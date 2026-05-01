@@ -2,6 +2,7 @@
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
+export PYTHONPATH="$PWD${PYTHONPATH:+:$PYTHONPATH}"
 
 python scripts/00_verify_env.py
 
