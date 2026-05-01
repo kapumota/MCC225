@@ -2,6 +2,7 @@
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
+export PYTHONPATH="$PWD${PYTHONPATH:+:$PYTHONPATH}"
 
 torchrun \
   --nproc_per_node=1 \

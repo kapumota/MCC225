@@ -861,3 +861,13 @@ bash scripts/run_local_pipeline.sh
 ```
 
 Ese es el camino más corto y estable para validar que el proyecto funciona.
+
+## Nota de ejecución corregida
+
+Los scripts en `scripts/` agregan automáticamente la raíz del proyecto a `sys.path`, por lo que los imports como `from src.dataset_utils import load_metadata` funcionan al ejecutarlos desde un notebook o desde terminal con comandos como:
+
+```bash
+python scripts/02_build_embeddings.py --metadata-csv data/bootstrap_flickr30k/metadata.csv --output outputs/embeddings/bootstrap_embeddings.npz
+```
+
+También se actualizó `scripts/run_local_pipeline.sh` para exportar `PYTHONPATH` antes de ejecutar el pipeline completo.
