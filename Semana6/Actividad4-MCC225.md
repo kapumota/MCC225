@@ -59,7 +59,7 @@ El notebook debe mostrar que el estudiante entiende la diferencia entre:
 
 - recuperar vecinos semánticos,
 - clasificar zero-shot,
-- generar un caption factual,
+- generar un caption factual (descripción basada en hechos),
 - generar una nota condicionada por evidencia,
 - producir una comparación curatorial,
 - y justificar qué evidencia soporta o no soporta una afirmación generada.
@@ -74,7 +74,7 @@ Entregar **1 notebook Jupyter** con el nombre:
 ApellidoNombre-Actividad4-MCC225.ipynb
 ```
 
-El notebook debe ejecutarse de principio a fin en el entorno del curso, usando rutas relativas o detección robusta de `PROJECT_ROOT`. Puede incluir una sección exploratoria opcional, pero debe separar claramente lo obligatorio de lo experimental.
+El notebook debe ejecutarse de principio a fin en el entorno del curso, usando rutas relativas o detección robusta de `PROJECT_ROOT`. Puede incluir una sección exploratoria opcional, pero se debe separar claramente lo obligatorio de lo experimental.
 
 #### Estructura mínima obligatoria del notebook
 
@@ -96,12 +96,12 @@ Construye una síntesis breve de la progresión:
 
 | Etapa | Material de referencia | Pregunta central | Salida técnica | Límite para Semana 7 |
 |---|---|---|---|---|
-| Semana 4 | OpenCLIP, embeddings, retrieval | ¿Qué tan bien se alinean imagen y texto? | ranking, R@k, MRR, negativos duros | no genera explicación ni caption grounded |
+| Semana 4 | OpenCLIP, embeddings, retrieval | ¿Qué tan bien se alinean imagen y texto? | ranking, R@k, MRR, negativos díficiles | no genera explicación ni caption grounded |
 | Semana 5 | zero-shot, prompts, FAISS | ¿Cómo clasificar o buscar sin entrenamiento supervisado directo? | predicción, top-k, índice semántico | la etiqueta no basta para describir evidencia |
 | Proyecto Patrimonio | recuperación + generación grounded | ¿Cómo redactar texto controlado por evidencia? | caption, nota, comparación, traza | riesgo de grounding solo catalográfico |
 | Semana 7 | captioning y generación condicionada | ¿Qué debe decir el sistema y con qué soporte? | descripción multimodal verificable | requiere evaluación de alucinación y soporte |
 
-La tabla puede ampliarse, pero debe discutir explícitamente por qué una métrica de retrieval no garantiza una buena generación descriptiva.
+La tabla puede ampliarse, pero debe discutir explícitamente por qué una métrica de recuperación no garantiza una buena generación descriptiva.
 
 ##### 3. Diagnóstico del corpus Patrimonio_Andino_Grounded
 
@@ -273,12 +273,14 @@ La función debe recibir entradas reales del proyecto y devolver un `DataFrame`,
 
 Redacta una discusión de **600 a 900 palabras** que responda:
 
-1. ¿En qué se diferencia un caption visual clásico de una nota grounded patrimonial?
-2. ¿Qué se gana y qué se pierde al usar recuperación como soporte de generación?
-3. ¿Cuándo un vecino recuperado debe tratarse como evidencia y cuándo solo como contexto?
-4. ¿Qué significa "atención visual-semántica" cuando parte del corpus no tiene imagen disponible?
-5. ¿Por qué métricas como cobertura de atributos o alucinación proxy son útiles pero insuficientes?
-6. ¿Qué diseño propondrías para escalar este prototipo a un dataset mayor?
+1. ¿En qué se diferencia un caption visual clásico de una nota grounded patrimonial?,
+2. ¿Qué se gana y qué se pierde al usar recuperación como soporte de generación?,
+3. ¿Cuándo un vecino recuperado debe tratarse como evidencia y cuándo solo como contexto?,
+4. ¿Qué significa "atención visual-semántica" cuando parte del corpus no tiene imagen disponible?,
+5. ¿Por qué métricas como cobertura de atributos o alucinación proxy son útiles pero insuficientes?,
+6. ¿Qué diseño propondrías para escalar este prototipo a un dataset mayor?.
+
+> Una **alucinación proxy** suele referirse a una respuesta o señal indirecta que parece indicar algo real sobre el mundo, pero en realidad es una inferencia falsa o engañosa del modelo. 
 
 La discusión debe apoyarse en resultados observados, no solo en definiciones generales.
 
@@ -295,17 +297,15 @@ Cierra con una propuesta de continuación que incluya:
 7. riesgo de alucinación o falta de grounding,
 8. experimento pequeño reproducible para la siguiente semana.
 
-Esta sección debe funcionar como puente entre el laboratorio de Semana 7 y el trabajo integrador final.
-
 ##### 11. Limitaciones, dudas y preguntas abiertas
 
 Cierra con una sección breve donde respondas:
 
-- ¿qué parte del pipeline quedó realmente grounded?
-- ¿qué parte depende solo de metadatos?
-- ¿qué afirmación sería irresponsable generar con la evidencia disponible?
-- ¿qué evidencia adicional necesitarías para mejorar el captioning?
-- ¿qué métrica agregarías si tuvieras evaluación humana experta?
+- ¿qué parte del pipeline quedó realmente grounded?,
+- ¿qué parte depende solo de metadatos?,
+- ¿qué afirmación sería irresponsable generar con la evidencia disponible?,
+- ¿qué evidencia adicional necesitarías para mejorar el captioning?,
+- ¿qué métrica agregarías si tuvieras evaluación humana experta?.
 
 #### Requisitos mínimos de código
 
