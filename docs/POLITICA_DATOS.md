@@ -1,4 +1,4 @@
-### Pol+itica de datos del repositorio MCC225
+### Política de datos del repositorio MCC225
 
 #### Principio general
 
