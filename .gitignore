@@ -1,2 +1,19 @@
 .ipynb_checkpoints/
 **/.ipynb_checkpoints/
+
+# Entornos Python locales
+.venv/
+.venv-*/
+.venv-nb/
+venv/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/
