@@ -20,7 +20,7 @@ Este repositorio versiona código, notebooks, lecturas, guias, rúbricas y fixtu
 
 #### Regla operativa
 
-Si una semana usa datos pesados, debe incluir un script de preparación local con nombre parecido a `01_prepare_*.py`. El estudiante clona el repositorio, instala dependencias y ejecuta ese script para descargar o regenerar los datos en su máquina.
+Si una semana usa datos pesados, debe incluir un script de preparación local con nombre parecido a `01_prepare_*.py`. El estudiante clona el repositorio, instala dependencias y ejecuta ese script para descargar o regenerar los datos en su máquina o entorno.
 
 #### Reproducibilidad mínima
 
