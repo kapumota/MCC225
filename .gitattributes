@@ -1,0 +1,44 @@
+# MCC225 - atributos de Git
+# Normaliza saltos de linea y evita diffs de texto sobre binarios.
+
+* text=auto eol=lf
+
+*.sh        text eol=lf
+*.sbatch    text eol=lf
+*.py        text eol=lf
+*.md        text eol=lf
+*.yaml      text eol=lf
+*.yml       text eol=lf
+*.json      text eol=lf
+*.toml      text eol=lf
+*.txt       text eol=lf
+*.csv       text eol=lf
+
+*.bat       text eol=crlf
+*.ps1       text eol=crlf
+
+*.pdf       binary
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.webp      binary
+*.npz       binary
+*.npy       binary
+*.pt        binary
+*.pth       binary
+*.ckpt      binary
+*.safetensors binary
+*.h5        binary
+*.onnx      binary
+*.bin       binary
+*.parquet   binary
+
+# Notebooks: GitHub ya los renderiza. Para limpiar outputs, instalar nbstripout localmente.
+# pip install nbstripout
+# nbstripout --install --attributes .gitattributes
+# *.ipynb filter=nbstripout
+
+# Archivos generados: colapsar en revisiones de GitHub cuando se versionen por excepcion.
+**/outputs/**/*.csv linguist-generated=true
+**/outputs/**/*.json linguist-generated=true

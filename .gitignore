@@ -7,13 +7,85 @@
 .venv-nb/
 venv/
 ENV/
-
 # Python cache
 __pycache__/
 *.py[cod]
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
-
 # Jupyter
-.ipynb_checkpoints/
+# MCC225 - politica de higiene de repositorio
+# Regla base:
+# - Codigo, notebooks, lecturas, guias y fixtures pequenos si se versionan.
+# - Datasets descargables, artefactos generados, embeddings, pesos y logs no se versionan.
+# - Si un archivo se puede regenerar mediante script, no debe quedar en Git.
+# Python y Jupyter
+*.egg-info/
+*.egg
+build/
+dist/
+.eggs/
+# Entornos y caches
+env/
+.conda/
+.cache/
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+# Variables de entorno y secretos
+.env
+**/.env
+!**/.env.example
+!**/*.env.example
+# Artefactos de modelos, pesos, embeddings e indices generados
+*.npz
+*.npy
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.h5
+*.onnx
+*.bin
+*.parquet
+# Datasets pesados conocidos
+Semana3/Cuadernos/data/images/
+Semana4/Proyecto/data/bootstrap_flickr30k/images/
+Semana4/Proyecto/data/flickr1k_hf/images/
+Semana5/Proyecto/data/bootstrap_flickr30k/images/
+Semana5/Proyecto/data/flickr1k_eval_300/images/
+# Reglas genericas para semanas futuras
+**/data/processed/**
+**/bootstrap_*/images/
+**/flickr*/images/
+**/*_hf/images/
+# Artefactos generados por pipelines
+**/outputs/embeddings/**
+**/outputs/logs/**
+**/outputs/cache/**
+**/outputs/tmp/**
+**/outputs/metrics/*.csv
+**/outputs/figures/*.png
+**/outputs/figures/*.jpg
+**/outputs/figures/*.jpeg
+# Conservar placeholders de carpetas vacias
+!**/.gitkeep
+!**/data/processed/
+!**/data/processed/**/
+!**/data/processed/**/.gitkeep
+!**/outputs/
+!**/outputs/**/
+!**/outputs/**/.gitkeep
+# Excepciones deliberadas
+# Semana 1: fixtures pequenos de figuras si pesan poco.
+!Semana1/**/figuras/**
+# Semana 5: conservar metadatos pequenos si son evidencia de evaluacion.
+!Semana5/Proyecto/outputs/metadata/**
+# Semana 6: conservar metadatos del proyecto integrador si no incluyen imagenes pesadas.
+!Semana6/Proyecto/Patrimonio_Andino_Grounded/**/*.md
+!Semana6/Proyecto/Patrimonio_Andino_Grounded/**/*.json
+!Semana6/Proyecto/Patrimonio_Andino_Grounded/**/*.jsonl
+!Semana6/Proyecto/Patrimonio_Andino_Grounded/**/*.csv
