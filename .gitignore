@@ -89,3 +89,10 @@ Semana5/Proyecto/data/flickr1k_eval_300/images/
 !Semana6/Proyecto/Patrimonio_Andino_Grounded/**/*.json
 !Semana6/Proyecto/Patrimonio_Andino_Grounded/**/*.jsonl
 !Semana6/Proyecto/Patrimonio_Andino_Grounded/**/*.csv
+
+# Papers externos
+# Los PDFs de papers no se versionan directamente.
+# Usar README.md bibliograficos por semana.
+**/papers/*.pdf
+!**/papers/README.md
+!**/papers/*.bib
