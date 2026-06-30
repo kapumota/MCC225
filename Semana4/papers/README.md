@@ -8,11 +8,11 @@ Los PDFs de papers no se versionan directamente en Git. Cada trabajo debe consul
 
 #### Papers de referencia
 
-| Archivo original | Título completo | Autores | Año | Fuente oficial | Uso en el curso |
+| Referencia base | Título completo | Autores | Año | Fuente oficial | Uso en el curso |
 |---|---|---|---:|---|---|
-| Align.pdf | Align | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana4 |
-| CLIP.pdf | CLIP | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana4 |
-| LiT.pdf | LiT | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana4 |
+| Align | Align | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana4 |
+| CLIP | CLIP | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana4 |
+| LiT | LiT | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana4 |
 
 #### Nota para estudiantes
 

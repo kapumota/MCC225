@@ -8,28 +8,28 @@ Los PDFs de papers no se versionan directamente en Git. Cada trabajo debe consul
 
 #### Papers de referencia
 
-| Archivo original | Título completo | Autores | Año | Fuente oficial | Uso en el curso |
+| Referencia base | Título completo | Autores | Año | Fuente oficial | Uso en el curso |
 |---|---|---|---:|---|---|
-| Alayrac.pdf | Alayrac | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Bai.pdf | Bai | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Cao.pdf | Cao | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Chen.pdf | Chen | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Deitke.pdf | Deitke | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Devlin.pdf | Devlin | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Du.pdf | Du | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Huang.pdf | Huang | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| kim.pdf | kim | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Liu1.pdf | Liu1 | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Liunian.pdf | Liunian | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Liu.pdf | Liu | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Lu.pdf | Lu | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Peng.pdf | Peng | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Savarese.pdf | Savarese | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Singh.pdf | Singh | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Tan-Bansal.pdf | Tan Bansal | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Tsimpoukelli.pdf | Tsimpoukelli | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Wang.pdf | Wang | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Yu.pdf | Yu | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
+| Alayrac | Alayrac | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
+| Bai | Bai | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
+| Cao | Cao | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
+| Chen | Chen | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
+| Deitke | Deitke | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
+| Devlin | Devlin | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
+| Du | Du | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
+| Huang | Huang | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
+| kim | kim | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
+| Liu1 | Liu1 | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
+| Liunian | Liunian | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
+| Liu | Liu | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
+| Lu | Lu | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
+| Peng | Peng | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
+| Savarese | Savarese | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
+| Singh | Singh | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
+| Tan-Bansal | Tan Bansal | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
+| Tsimpoukelli | Tsimpoukelli | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
+| Wang | Wang | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
+| Yu | Yu | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
 
 #### Nota para estudiantes
 

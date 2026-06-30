@@ -8,21 +8,21 @@ Los PDFs de papers no se versionan directamente en Git. Cada trabajo debe consul
 
 #### Papers de referencia
 
-| Archivo original | Título completo | Autores | Año | Fuente oficial | Uso en el curso |
+| Referencia base | Título completo | Autores | Año | Fuente oficial | Uso en el curso |
 |---|---|---|---:|---|---|
-| Arevalo.pdf | Arevalo | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
-| Baltrusaitis.pdf | Baltrusaitis | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
-| Cheng.pdf | Cheng | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
-| Han.pdf | Han | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
-| Hazarika.pdf | Hazarika | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
-| Kiela.pdf | Kiela | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
-| Li1.pdf | Li1 | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
-| Li.pdf | Li | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
-| Perez.pdf | Perez | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
-| su.pdf | su | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
-| Tsai.pdf | Tsai | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
-| xu.pdf | xu | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
-| Zadeh.pdf | Zadeh | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
+| Arevalo | Arevalo | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
+| Baltrusaitis | Baltrusaitis | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
+| Cheng | Cheng | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
+| Han | Han | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
+| Hazarika | Hazarika | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
+| Kiela | Kiela | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
+| Li1 | Li1 | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
+| Li | Li | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
+| Perez | Perez | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
+| su | su | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
+| Tsai | Tsai | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
+| xu | xu | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
+| Zadeh | Zadeh | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana3 |
 
 #### Nota para estudiantes
 
