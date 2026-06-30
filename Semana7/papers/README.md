@@ -8,28 +8,28 @@ Los PDFs de papers no se versionan directamente en Git. Cada trabajo debe consul
 
 #### Papers de referencia
 
-| Referencia base | Título completo | Autores | Año | Fuente oficial | Uso en el curso |
-|---|---|---|---:|---|---|
-| Alayrac | Alayrac | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Bai | Bai | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Cao | Cao | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Chen | Chen | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Deitke | Deitke | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Devlin | Devlin | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Du | Du | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Huang | Huang | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| kim | kim | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Liu1 | Liu1 | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Liunian | Liunian | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Liu | Liu | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Lu | Lu | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Peng | Peng | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Savarese | Savarese | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Singh | Singh | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Tan-Bansal | Tan Bansal | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Tsimpoukelli | Tsimpoukelli | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Wang | Wang | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
-| Yu | Yu | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana7 |
+| Referencia base | Título completo | Autores | Año | Fuente oficial | Uso en el curso | Estado |
+|---|---|---|---:|---|---|---|
+| Alayrac | Flamingo: a Visual Language Model for Few-Shot Learning | Jean-Baptiste Alayrac et al. | 2022 | arXiv:2204.14198 | Modelos visión-lenguaje con aprendizaje few-shot e imágenes o videos intercalados con texto | Verificado |
+| Bai | Qwen-VL: A Versatile Vision-Language Model for Understanding, Localization, Text Reading, and Beyond | Jinze Bai, Shuai Bai, Shusheng Yang, Shijie Wang, Sinan Tan, Peng Wang, Junyang Lin, Chang Zhou, Jingren Zhou | 2023 | arXiv:2308.12966 | Modelos visión-lenguaje generalistas con grounding, lectura de texto y diálogo multimodal | Verificado |
+| Cao | Pendiente de verificación bibliográfica | Pendiente | Pendiente | Pendiente | Modelos multimodales grandes o evaluación de capacidades multimodales | Pendiente |
+| Chen | MiniGPT-4: Enhancing Vision-Language Understanding with Advanced Large Language Models | Deyao Zhu, Jun Chen, Xiaoqian Shen, Xiang Li, Mohamed Elhoseiny | 2023 | arXiv:2304.10592 | Alineamiento de encoder visual con LLM para capacidades multimodales generativas | Verificado |
+| Deitke | Molmo and PixMo: Open Weights and Open Data for State-of-the-Art Vision-Language Models | Matt Deitke et al. | 2024 | arXiv:2409.17146 | Modelos visión-lenguaje abiertos con pesos, datos y evaluación de modelos fundacionales | Verificado |
+| Devlin | BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding | Jacob Devlin, Ming-Wei Chang, Kenton Lee, Kristina Toutanova | 2018 | arXiv:1810.04805 | Base conceptual de Transformers encoder y preentrenamiento contextual usado en VLM clásicos | Verificado |
+| Du | Pendiente de verificación bibliográfica | Pendiente | Pendiente | Pendiente | Modelos multimodales grandes, VQA o razonamiento visual | Pendiente |
+| Huang | Language Is Not All You Need: Aligning Perception with Language Models | Shaohan Huang et al. | 2023 | arXiv:2302.14045 | Kosmos-1 y alineamiento entre percepción multimodal y modelos de lenguaje | Verificado |
+| kim | ViLT: Vision-and-Language Transformer Without Convolution or Region Supervision | Wonjae Kim, Bokyung Son, Ildoo Kim | 2021 | arXiv:2102.03334 | Transformers visión-lenguaje sin detectores de regiones ni CNN externas | Verificado |
+| Liu1 | Visual Instruction Tuning | Haotian Liu, Chunyuan Li, Qingyang Wu, Yong Jae Lee | 2023 | arXiv:2304.08485 | LLaVA e instruction tuning multimodal para asistentes visión-lenguaje | Verificado |
+| Liunian | VisualBERT: A Simple and Performant Baseline for Vision and Language | Liunian Harold Li, Mark Yatskar, Da Yin, Cho-Jui Hsieh, Kai-Wei Chang | 2019 | arXiv:1908.03557 | Línea base Transformer para tareas visión-lenguaje con alineamiento implícito | Verificado |
+| Liu | Pendiente de verificación bibliográfica | Pendiente | Pendiente | Pendiente | Modelos multimodales grandes o variantes de LLaVA | Pendiente |
+| Lu | ViLBERT: Pretraining Task-Agnostic Visiolinguistic Representations for Vision-and-Language Tasks | Jiasen Lu, Dhruv Batra, Devi Parikh, Stefan Lee | 2019 | arXiv:1908.02265 | Arquitectura de dos flujos para representación visiolingüística preentrenada | Verificado |
+| Peng | Kosmos-2: Grounding Multimodal Large Language Models to the World | Zhiliang Peng, Wenhui Wang, Li Dong, Yaru Hao, Shaohan Huang, Shuming Ma, Furu Wei | 2023 | arXiv:2306.14824 | Grounding visual en MLLMs mediante referencias y cajas delimitadoras | Verificado |
+| Savarese | Pendiente de verificación bibliográfica | Pendiente | Pendiente | Pendiente | Modelos visión-lenguaje con LLMs congelados o BLIP-2 | Pendiente |
+| Singh | FLAVA: A Foundational Language And Vision Alignment Model | Amanpreet Singh, Ronghang Hu, Vedanuj Goswami, Guillaume Couairon, Wojciech Galuba, Marcus Rohrbach, Douwe Kiela | 2021 | arXiv:2112.04482 | Modelo fundacional para visión, lenguaje y tareas visión-lenguaje | Verificado |
+| Tan-Bansal | LXMERT: Learning Cross-Modality Encoder Representations from Transformers | Hao Tan, Mohit Bansal | 2019 | arXiv:1908.07490 | Preentrenamiento cross-modal con encoders de lenguaje, objetos y fusión | Verificado |
+| Tsimpoukelli | Multimodal Few-Shot Learning with Frozen Language Models | Maria Tsimpoukelli, Jacob Menick, Serkan Cabi, S. M. Ali Eslami, Oriol Vinyals, Felix Hill | 2021 | arXiv:2106.13884 | Adaptación multimodal few-shot con modelo de lenguaje congelado | Verificado |
+| Wang | OFA: Unifying Architectures, Tasks, and Modalities Through a Simple Sequence-to-Sequence Learning Framework | Peng Wang et al. | 2022 | arXiv:2202.03052 | Marco sequence-to-sequence unificado para tareas y modalidades | Verificado |
+| Yu | CoCa: Contrastive Captioners are Image-Text Foundation Models | Jiahui Yu, Zirui Wang, Vijay Vasudevan, Legg Yeung, Mojtaba Seyedhosseini, Yonghui Wu | 2022 | arXiv:2205.01917 | Modelo fundacional imagen-texto con objetivos contrastivos y captioning | Verificado |
 
 #### Nota para estudiantes
 
