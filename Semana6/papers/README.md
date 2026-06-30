@@ -8,16 +8,16 @@ Los PDFs de papers no se versionan directamente en Git. Cada trabajo debe consul
 
 #### Papers de referencia
 
-| Archivo original | Título completo | Autores | Año | Fuente oficial | Uso en el curso |
+| Referencia base | Título completo | Autores | Año | Fuente oficial | Uso en el curso |
 |---|---|---|---:|---|---|
-| Li1.pdf | Li1 | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana6 |
-| Li.pdf | Li | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana6 |
-| Ramesh.pdf | Ramesh | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana6 |
-| Rombach.pdf | Rombach | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana6 |
-| Saharia.pdf | Saharia | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana6 |
-| Vinyals.pdf | Vinyals | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana6 |
-| Xu.pdf | Xu | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana6 |
-| yu.pdf | yu | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana6 |
+| Li1 | Li1 | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana6 |
+| Li | Li | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana6 |
+| Ramesh | Ramesh | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana6 |
+| Rombach | Rombach | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana6 |
+| Saharia | Saharia | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana6 |
+| Vinyals | Vinyals | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana6 |
+| Xu | Xu | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana6 |
+| yu | yu | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana6 |
 
 #### Nota para estudiantes
 

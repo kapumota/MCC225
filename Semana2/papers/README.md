@@ -8,21 +8,21 @@ Los PDFs de papers no se versionan directamente en Git. Cada trabajo debe consul
 
 #### Papers de referencia
 
-| Archivo original | Título completo | Autores | Año | Fuente oficial | Uso en el curso |
-|---|---|---|---:|---|---|
-| Bruni.pdf | Bruni | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana2 |
-| Devise.pdf | Devise | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana2 |
-| Dosovitskiy.pdf | Dosovitskiy | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana2 |
-| Faghri.pdf | Faghri | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana2 |
-| Karpathy.pdf | Karpathy | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana2 |
-| Kiela-Bottou.pdf | Kiela Bottou | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana2 |
-| Kiela.pdf | Kiela | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana2 |
-| kiros.pdf | kiros | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana2 |
-| Lazaridou.pdf | Lazaridou | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana2 |
-| Razavian.pdf | Razavian | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana2 |
-| Socher1.pdf | Socher1 | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana2 |
-| Socher.pdf | Socher | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana2 |
-| WSABIE.pdf | WSABIE | Pendiente | Pendiente | Pendiente | Lectura de apoyo de Semana2 |
+| Referencia base | Título completo | Autores | Año | Fuente oficial | Uso en el curso | Estado |
+|---|---|---|---:|---|---|---|
+| Bruni | Pendiente de verificación bibliográfica | Pendiente | Pendiente | Pendiente | Semántica distribucional multimodal | Pendiente |
+| Devise | DeViSE: A Deep Visual-Semantic Embedding Model | Andrea Frome et al. | 2013 | NeurIPS | Embeddings visual-semánticos y clasificación zero-shot | Pendiente de enlace oficial |
+| Dosovitskiy | An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale | Alexey Dosovitskiy et al. | 2020 | arXiv:2010.11929 | Introducción a Vision Transformers | Verificado |
+| Faghri | VSE++: Improving Visual-Semantic Embeddings with Hard Negatives | Fartash Faghri, David J. Fleet, Jamie Ryan Kiros, Sanja Fidler | 2017 | arXiv:1707.05612 | Recuperación imagen-texto y hard negatives | Verificado |
+| Karpathy | Deep Visual-Semantic Alignments for Generating Image Descriptions | Andrej Karpathy, Li Fei-Fei | 2014 | arXiv:1412.2306 | Alineamiento imagen-texto y generación de descripciones | Verificado |
+| Kiela-Bottou | Pendiente de verificación bibliográfica | Pendiente | Pendiente | Pendiente | Representaciones visuales para semántica multimodal | Pendiente |
+| Kiela | Pendiente de verificación bibliográfica | Pendiente | Pendiente | Pendiente | Semántica multimodal y grounding | Pendiente |
+| kiros | Unifying Visual-Semantic Embeddings with Multimodal Neural Language Models | Ryan Kiros, Ruslan Salakhutdinov, Richard S. Zemel | 2014 | arXiv:1411.2539 | Embeddings imagen-texto y modelos de lenguaje multimodales | Verificado |
+| Lazaridou | Combining Language and Vision with a Multimodal Skip-gram Model | Angeliki Lazaridou, Nghia The Pham, Marco Baroni | 2015 | arXiv:1501.02598 | Skip-gram multimodal y grounding visual de palabras | Verificado |
+| Razavian | CNN Features off-the-shelf: an Astounding Baseline for Recognition | Ali Sharif Razavian, Hossein Azizpour, Josephine Sullivan, Stefan Carlsson | 2014 | arXiv:1403.6382 | Uso de CNN preentrenadas como extractores visuales | Verificado |
+| Socher1 | Pendiente de verificación bibliográfica | Pendiente | Pendiente | Pendiente | Composición semántica y visión-lenguaje | Pendiente |
+| Socher | Zero-Shot Learning Through Cross-Modal Transfer | Richard Socher, Milind Ganjoo, Hamsa Sridhar, Osbert Bastani, Christopher D. Manning, Andrew Y. Ng | 2013 | arXiv:1301.3666 | Transferencia cross-modal y aprendizaje zero-shot | Verificado |
+| WSABIE | Pendiente de verificación bibliográfica | Pendiente | Pendiente | Pendiente | Anotación de imágenes a gran escala | Pendiente |
 
 #### Nota para estudiantes
 
