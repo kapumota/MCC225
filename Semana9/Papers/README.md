@@ -15,7 +15,7 @@ Las fuentes fueron seleccionadas porque permiten estudiar la confiabilidad desde
 - gestión de riesgos para IA generativa
 - principios internacionales de IA confiable
 - sistemas de gestión de IA
-- regulación basada en riesgo
+- regulación basada en riesgo.
 
 #### Papers y fuentes de referencia
 
@@ -33,17 +33,6 @@ Las fuentes fueron seleccionadas porque permiten estudiar la confiabilidad desde
 #### Nota para estudiantes
 
 Estas fuentes no deben leerse como una lista aislada de regulaciones o surveys. Deben leerse como una metodología para pasar de una evaluación técnica básica a una evaluación responsable de sistemas multimodales.
-
-Una lectura adecuada debería responder:
-
-1. Qué entiende cada fuente por confiabilidad.
-2. Qué riesgos considera relevantes.
-3. Qué dimensiones evalúa: desempeño, fairness, robustez, privacidad, seguridad, explicabilidad o gobernanza.
-4. Qué evidencia exige para sostener una afirmación responsable.
-5. Qué limitaciones reconoce.
-6. Cómo separa el análisis del modelo, del sistema completo y del contexto de uso.
-7. Cómo se puede adaptar al trabajo integrador de MCC225.
-8. Qué afirmaciones no deberían hacerse si no existe evidencia suficiente.
 
 #### Ruta sugerida de lectura
 
@@ -84,7 +73,7 @@ En el informe final de MCC225, estas fuentes deben aparecer como base para una s
 5. sesgo y cobertura de datos
 6. explicabilidad y trazabilidad
 7. privacidad y uso responsable
-8. limitaciones y trabajo futuro
+8. limitaciones y trabajo futuro.
 
 #### Advertencia metodológica
 
