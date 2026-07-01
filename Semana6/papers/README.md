@@ -17,7 +17,7 @@ Los PDFs de papers no se versionan directamente en Git. Cada trabajo debe consul
 | Saharia | Photorealistic Text-to-Image Diffusion Models with Deep Language Understanding | Chitwan Saharia, William Chan, Saurabh Saxena, Lala Li, Jay Whang, Emily Denton, Seyed Kamyar Seyed Ghasemipour, Burcu Karagol Ayan, S. Sara Mahdavi, Rapha Gontijo Lopes, Tim Salimans, Jonathan Ho, David J. Fleet, Mohammad Norouzi | 2022 | arXiv:2205.11487 | Imagen, difusión texto-imagen y evaluación con DrawBench | Verificado |
 | Vinyals | Show and Tell: A Neural Image Caption Generator | Oriol Vinyals, Alexander Toshev, Samy Bengio, Dumitru Erhan | 2014 | arXiv:1411.4555 | Image captioning con arquitectura encoder-decoder | Verificado |
 | Xu | Show, Attend and Tell: Neural Image Caption Generation with Visual Attention | Kelvin Xu, Jimmy Ba, Ryan Kiros, Kyunghyun Cho, Aaron Courville, Ruslan Salakhutdinov, Richard Zemel, Yoshua Bengio | 2015 | arXiv:1502.03044 | Image captioning con atención visual | Verificado |
-| yu | CoCa: Contrastive Captioners are Image-Text Foundation Models | Jiahui Yu, Zirui Wang, Vijay Vasudevan, Legg Yeung, Mojtaba Seyedhosseini, Yonghui Wu | 2022 | arXiv:2205.01917 | Modelo fundacional imagen-texto con objetivo contrastivo y captioning | Verificado |
+| Yu | CoCa: Contrastive Captioners are Image-Text Foundation Models | Jiahui Yu, Zirui Wang, Vijay Vasudevan, Legg Yeung, Mojtaba Seyedhosseini, Yonghui Wu | 2022 | arXiv:2205.01917 | Modelo fundacional imagen-texto con objetivo contrastivo y captioning | Verificado |
 
 #### Nota para estudiantes
 
