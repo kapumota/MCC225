@@ -36,13 +36,3 @@ Para la Semana 1 no se espera dominar todos los detalles técnicos de cada paper
 6. Leer CLIP como primera aproximación al aprendizaje contrastivo imagen-texto.
 7. Leer BLIP como preview de modelos visión-lenguaje unificados.
 
-#### Uso esperado en el curso
-
-Al finalizar la Semana 1, el estudiante debe poder:
-
-1. Definir qué es un sistema multimodal.
-2. Distinguir representación, alineamiento, fusión, generación y evaluación.
-3. Explicar por qué texto e imagen pueden compararse en un espacio semántico compartido.
-4. Reconocer tareas básicas como retrieval, captioning y VQA.
-5. Describir la idea de imagen como secuencia de patches.
-6. Formular una primera propuesta de problema multimodal evaluable.
