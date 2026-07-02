@@ -1,4 +1,4 @@
-### Actividad complementaria del Cuaderno 14
+### Actividad complementaria
 
 ### Evaluación responsable del proyecto multimodal
 
