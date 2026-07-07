@@ -6,7 +6,7 @@ Este repositorio versiona código, notebooks, lecturas, guias, rúbricas y fixtu
 
 #### Que si va en Git
 
-- Notebooks y scripts docentes.
+- Notebooks y scripts de ejemplo.
 - Lecturas, actividades, rúbricas y guías.
 - Fixtures mínimos necesarios para que un ejemplo pedágogico abra sin conexión, siempre que sean pequeños.
 - Metadatos pequeños de referencia, por ejemplo archivos `.json`, `.jsonl`, `.csv` o `.md` usados como evidencia académica.
