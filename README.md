@@ -67,6 +67,31 @@ El desarrollo del curso se apoya en un entorno computacional orientado a experim
 - **Visual Studio Code**
 - **Git y GitHub**
 
+**Uso del makefile**
+
+Desde la raíz del repositorio:
+
+```
+make check-clean
+```
+
+Esto permite revisar qué se encontraría antes de borrar nada.
+
+Después:
+
+```
+make clean
+```
+
+Para una limpieza más amplia:
+
+```
+make clean-all
+```
+
+En Windows funcionará desde Git Bash, WSL o un entorno que tenga GNU Make. No funcionará directamente en PowerShell si make no está instalado.
+
+
 El ecosistema de trabajo incluye bibliotecas para aprendizaje profundo, representación multimodal, ajuste eficiente, recuperación, evaluación y construcción de interfaces experimentales, entre ellas:
 
 - **PyTorch**
