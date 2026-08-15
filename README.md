@@ -2,7 +2,7 @@
 
 Repositorio académico del curso **MCC225: IA Generativa y Aprendizaje Multimodal**.
 
-Este espacio organiza materiales, laboratorios, lecturas, recursos técnicos y avances del trabajo integrador del curso. El enfoque es formativo y aplicado, con énfasis en **reproducibilidad**, **análisis experimental** y **desarrollo de soluciones multimodales** sobre texto, imagen, audio y video.
+Este repositorio organiza materiales, laboratorios, lecturas, recursos técnicos y avances del trabajo integrador del curso. El enfoque es formativo y aplicado, con énfasis en **reproducibilidad**, **análisis experimental** y **desarrollo de soluciones multimodales** sobre texto, imagen, audio y video.
 
 #### 1. Descripción del curso
 
